@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function jumbotronCariMobil() {
+export default function JumbotronCariMobil() {
     return (
         <section class="custom-section1 py-5 mb-5">
             <div class="container py-5">

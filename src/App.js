@@ -35,7 +35,7 @@ class App extends React.Component {
         <Routes>
           <Route path='/' element={<LayoutsCariMobil/>}/>
           <Route path='/hasil-pencarian' element={<LayoutsHasilPencarian/>}/>
-          <Route path='/detail-paket' element={<LayoutsDetailPaket/>}/>
+          <Route path='/detail-paket/:id' element={<LayoutsDetailPaket/>}/>
         </Routes>
       </BrowserRouter>
     )
