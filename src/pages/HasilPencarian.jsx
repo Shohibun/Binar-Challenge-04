@@ -9,28 +9,49 @@ import {
   faCalendar,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import img from "../images/Infinity-1s-200px.svg";
 
-export default function HasilPencarian(props) {
+export default function HasilPencarian() {
   const [dataMobil, setDataMobil] = useState([]);
   const [loading, setLoading] = useState(false);
-  const fetchData = async () => {
+  const params = useParams();
+
+  const fetchData = async (tipeParams) => {
     setLoading(true);
     const responds = await axios
       .get("https://rent-cars-api.herokuapp.com/customer/car")
       .catch((err) => {
         console.log(err);
       });
-    setDataMobil(responds.data);
-    console.log(dataMobil);
+    if (tipeParams == null) {
+      setDataMobil(responds.data);
+    } else {
+      setDataMobil(responds.data.filter((obj) => obj.status === tipeParams));
+    }
+
     setLoading(false);
   };
+  const [tipe, setTipe] = useState(null);
+  const tipeOnChange = (event) => {
+    if (event.target) {
+        setTipe(event.target.value);
+    }
+}
   useEffect(() => {
     window.scroll(0, 0);
     //Langsung manggil dataMobil (hal pertama yang dilakukan)
-    fetchData();
+    if (params.tipe === "true") {
+      fetchData(true);
+    } else if (params.tipe === "false") {
+      fetchData(false);
+    } else {
+      fetchData(null);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    console.log(dataMobil);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Memanggil fetchData sekali saja
   return (
     <>
@@ -38,6 +59,7 @@ export default function HasilPencarian(props) {
         <>
           <div className="text-center">
             <img src={img} alt="" srcset="" />
+            Loading
           </div>
         </>
       ) : (
@@ -66,13 +88,13 @@ export default function HasilPencarian(props) {
                   <div className="col-md-3">
                     <select
                       className="form-select form-control rounded px-2 border clickable"
-                      aria-label="Default select example"
+                      aria-label="Default select example" onChange={tipeOnChange}
                     >
                       <option selected>Pilih Tipe Driver</option>
-                      <option value="1" className="text-muted">
+                      <option value="true" className="text-muted">
                         Dengan Sopir
                       </option>
-                      <option value="2" className="text-muted">
+                      <option value="false" className="text-muted">
                         Tanpa Sopir (Lepas Kunci)
                       </option>
                     </select>
@@ -132,11 +154,9 @@ export default function HasilPencarian(props) {
                 </div>
                 <div className="row align-items-center">
                   <div className="col-md-12 pt-3">
-                    <form>
-                      <button class="btn custom-btn-car font-weight-bold mr-2 unclickable">
-                        Edit
-                      </button>
-                    </form>
+                    <a class="btn custom-btn-car font-weight-bold mr-2 unclickable" href={`/hasil-pencarian/${tipe}`}>
+                      Edit
+                    </a>
                   </div>
                 </div>
               </div>
@@ -144,7 +164,7 @@ export default function HasilPencarian(props) {
           </div>
           <div className="container">
             <div className="row">
-              {dataMobil.map((pencarian) => {
+              {dataMobil?.map((pencarian) => {
                 return (
                   <div className="col-md-4">
                     <div className="card p-3 mb-4">

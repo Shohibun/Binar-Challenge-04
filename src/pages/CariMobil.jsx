@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export default function CariMobil() {
+    const [tipe, setTipe] = useState(null);
+    const tipeOnChange = (event) => { //
+        if (event.target) {
+            setTipe(event.target.value);
+            console.log("Tipe:", tipe)
+        }
+    }
     return (
         <>
             <div className="container custom-box my-4 p-3 m-auto border rounded shadow">
@@ -28,10 +35,10 @@ export default function CariMobil() {
                         </div>
                         <div className="row align-items-center">
                             <div className="col-md-3">
-                                <select className="form-select form-control rounded px-2 border clickable" aria-label="Default select example">
-                                    <option selected>Pilih Tipe Driver</option>
-                                    <option value="1" className="text-muted">Dengan Sopir</option>
-                                    <option value="2" className="text-muted">Tanpa Sopir (Lepas Kunci)</option>
+                                <select className="form-select form-control rounded px-2 border clickable" onChange={tipeOnChange} aria-label="Default select example">
+                                    <option selected value="null">Pilih Tipe Driver</option>
+                                    <option value="true" className="text-muted">Dengan Sopir</option>
+                                    <option value="false" className="text-muted">Tanpa Sopir (Lepas Kunci)</option>
                                 </select>
                             </div>
                             <div className="col-md-3">
@@ -65,7 +72,7 @@ export default function CariMobil() {
                         </div>
                         <div className="row align-items-center">
                             <div className="col-md-12 pt-3"> 
-                                <Link class="bg-success m-auto font-weight-bold rounded text-white border-0 pt-2 pb-2 pl-3 pr-3 custom-font unclickable" to={"/hasil-pencarian"}>Cari Mobil</Link>
+                                <Link class="bg-success m-auto font-weight-bold rounded text-white border-0 pt-2 pb-2 pl-3 pr-3 custom-font unclickable" to={`/hasil-pencarian/${tipe}`}>Cari Mobil</Link>
                             </div>
                         </div>
                     </div>
