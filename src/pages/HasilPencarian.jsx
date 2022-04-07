@@ -36,9 +36,9 @@ export default function HasilPencarian() {
   const [tipe, setTipe] = useState(null);
   const tipeOnChange = (event) => {
     if (event.target) {
-        setTipe(event.target.value);
+      setTipe(event.target.value);
     }
-}
+  };
   useEffect(() => {
     window.scroll(0, 0);
     //Langsung manggil dataMobil (hal pertama yang dilakukan)
@@ -51,10 +51,112 @@ export default function HasilPencarian() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     console.log(dataMobil);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Memanggil fetchData sekali saja
   return (
     <>
+      <div className="container custom-box my-4 p-3 m-auto border rounded shadow">
+        <div className="row">
+          <div className="col-md-10">
+            <div className="row align-items-center">
+              <div className="col-md-3">
+                <p className="custom-fs-p">Tipe Driver</p>
+              </div>
+              <div className="col-md-3">
+                <p className="custom-fs-p">Tanggal</p>
+              </div>
+              <div className="col-md-3">
+                <p className="custom-fs-p">Waktu Jemput/Ambil</p>
+              </div>
+              <div className="col-md-3">
+                <p className="custom-fs-p">Jumlah Penumpang (Optional)</p>
+              </div>
+              <div className="col-md-3">
+                <p className="custom-fs-p"></p>
+              </div>
+            </div>
+            <div className="row align-items-center">
+              <div className="col-md-3">
+                <select
+                  className="form-select form-control rounded px-2 border clickable"
+                  onChange={tipeOnChange}
+                  aria-label="Default select example"
+                >
+                  <option selected>Pilih Tipe Driver</option>
+                  <option value="true" className="text-muted">
+                    Dengan Sopir
+                  </option>
+                  <option value="false" className="text-muted">
+                    Tanpa Sopir (Lepas Kunci)
+                  </option>
+                </select>
+              </div>
+              <div className="col-md-3">
+                <div className="inner-addon left-addon">
+                  <input
+                    type="date"
+                    className="form-control px-2 clickable"
+                    placeholder="Pilih Tanggal"
+                  />
+                </div>
+              </div>
+              <div className="col-md-3">
+                <select className="form-control rounded px-2 border custom clickable">
+                  <option value="1" className="text-muted">
+                    08.00 WIB
+                  </option>
+                  <option value="2" className="text-muted">
+                    09.00 WIB
+                  </option>
+                  <option value="2" className="text-muted">
+                    10.00 WIB
+                  </option>
+                  <option value="2" className="text-muted">
+                    11.00 WIB
+                  </option>
+                  <option value="2" className="text-muted">
+                    12.00 WIB
+                  </option>
+                </select>
+                <FontAwesomeIcon
+                  icon={faClock}
+                  className="text-muted ml-2 custom-errspan"
+                />
+              </div>
+              <div className="col-md-3">
+                <div className="inner-addon right-addon">
+                  <input
+                    type="text"
+                    className="form-control px-2 clickable"
+                    placeholder="Jumlah Penumpang"
+                  />
+                  <FontAwesomeIcon
+                    icon={faUserGroup}
+                    className="text-muted custom-errspan"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-2">
+            <div className="row align-items-center">
+              <div className="col-md-12">
+                <p className="custom-fs-p">&nbsp;</p>
+              </div>
+            </div>
+            <div className="row align-items-center">
+              <div className="col-md-12 pt-3">
+                <a
+                  class="btn custom-btn-car font-weight-bold mr-2 unclickable"
+                  href={`/hasil-pencarian/${tipe}`}
+                >
+                  Edit
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       {loading === true ? (
         <>
           <div className="text-center">
@@ -64,104 +166,6 @@ export default function HasilPencarian() {
         </>
       ) : (
         <>
-          <div className="container custom-box my-4 p-3 m-auto border rounded shadow">
-            <div className="row">
-              <div className="col-md-10">
-                <div className="row align-items-center">
-                  <div className="col-md-3">
-                    <p className="custom-fs-p">Tipe Driver</p>
-                  </div>
-                  <div className="col-md-3">
-                    <p className="custom-fs-p">Tanggal</p>
-                  </div>
-                  <div className="col-md-3">
-                    <p className="custom-fs-p">Waktu Jemput/Ambil</p>
-                  </div>
-                  <div className="col-md-3">
-                    <p className="custom-fs-p">Jumlah Penumpang (Optional)</p>
-                  </div>
-                  <div className="col-md-3">
-                    <p className="custom-fs-p"></p>
-                  </div>
-                </div>
-                <div className="row align-items-center">
-                  <div className="col-md-3">
-                    <select
-                      className="form-select form-control rounded px-2 border clickable"
-                      aria-label="Default select example" onChange={tipeOnChange}
-                    >
-                      <option selected>Pilih Tipe Driver</option>
-                      <option value="true" className="text-muted">
-                        Dengan Sopir
-                      </option>
-                      <option value="false" className="text-muted">
-                        Tanpa Sopir (Lepas Kunci)
-                      </option>
-                    </select>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="inner-addon left-addon">
-                      <input
-                        type="date"
-                        className="form-control px-2 clickable"
-                        placeholder="Pilih Tanggal"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <select className="form-control rounded px-2 border custom clickable">
-                      <option value="1" className="text-muted">
-                        08.00 WIB
-                      </option>
-                      <option value="2" className="text-muted">
-                        09.00 WIB
-                      </option>
-                      <option value="2" className="text-muted">
-                        10.00 WIB
-                      </option>
-                      <option value="2" className="text-muted">
-                        11.00 WIB
-                      </option>
-                      <option value="2" className="text-muted">
-                        12.00 WIB
-                      </option>
-                    </select>
-                    <FontAwesomeIcon
-                      icon={faClock}
-                      className="text-muted ml-2 custom-errspan"
-                    />
-                  </div>
-                  <div className="col-md-3">
-                    <div className="inner-addon right-addon">
-                      <input
-                        type="text"
-                        className="form-control px-2 clickable"
-                        placeholder="Jumlah Penumpang"
-                      />
-                      <FontAwesomeIcon
-                        icon={faUserGroup}
-                        className="text-muted custom-errspan"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-2">
-                <div className="row align-items-center">
-                  <div className="col-md-12">
-                    <p className="custom-fs-p">&nbsp;</p>
-                  </div>
-                </div>
-                <div className="row align-items-center">
-                  <div className="col-md-12 pt-3">
-                    <a class="btn custom-btn-car font-weight-bold mr-2 unclickable" href={`/hasil-pencarian/${tipe}`}>
-                      Edit
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div className="container">
             <div className="row">
               {dataMobil?.map((pencarian) => {

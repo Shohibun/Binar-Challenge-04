@@ -35,6 +35,87 @@ export default function DetailPaket() {
   }, []); // Memanggil fetchData sekali saja
   return (
     <>
+      <div class="container custom-box my-4 p-3 border rounded shadow">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <p class="custom-fs-p">Tipe Driver</p>
+              </div>
+              <div class="col-md-3">
+                <p class="custom-fs-p">Tanggal</p>
+              </div>
+              <div class="col-md-3">
+                <p class="custom-fs-p">Waktu Jemput/Ambil</p>
+              </div>
+              <div class="col-md-3">
+                <p class="custom-fs-p">Jumlah Penumpang (Optional)</p>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <select
+                  class="form-select form-control rounded px-2 border clickable"
+                  aria-label="Default select example"
+                >
+                  <option selected>Pilih Tipe Driver</option>
+                  <option value="1" class="text-muted">
+                    Dengan Sopir
+                  </option>
+                  <option value="2" class="text-muted">
+                    Tanpa Sopir (Lepas Kunci)
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <div class="inner-addon left-addon">
+                  <input
+                    type="date"
+                    class="form-control px-2 clickable"
+                    placeholder="Pilih Tanggal"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <select class="form-control rounded px-2 border custom clickable">
+                  <option value="1" class="text-muted">
+                    08.00 WIB
+                  </option>
+                  <option value="2" class="text-muted">
+                    09.00 WIB
+                  </option>
+                  <option value="2" class="text-muted">
+                    10.00 WIB
+                  </option>
+                  <option value="2" class="text-muted">
+                    11.00 WIB
+                  </option>
+                  <option value="2" class="text-muted">
+                    12.00 WIB
+                  </option>
+                </select>
+                <FontAwesomeIcon
+                  icon={faClock}
+                  className="text-muted ml-2 custom-errspan"
+                />
+              </div>
+              <div class="col-md-3">
+                <div class="inner-addon right-addon">
+                  <input
+                    type="text"
+                    class="form-control px-2 clickable"
+                    placeholder="Jumlah Penumpang"
+                  />
+                  <FontAwesomeIcon
+                    icon={faUserGroup}
+                    className="text-muted custom-errspan"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       {loading === true ? (
         <>
           <div className="text-center">
@@ -43,87 +124,6 @@ export default function DetailPaket() {
         </>
       ) : (
         <>
-          <div class="container custom-box my-4 p-3 border rounded shadow">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="row align-items-center">
-                  <div class="col-md-3">
-                    <p class="custom-fs-p">Tipe Driver</p>
-                  </div>
-                  <div class="col-md-3">
-                    <p class="custom-fs-p">Tanggal</p>
-                  </div>
-                  <div class="col-md-3">
-                    <p class="custom-fs-p">Waktu Jemput/Ambil</p>
-                  </div>
-                  <div class="col-md-3">
-                    <p class="custom-fs-p">Jumlah Penumpang (Optional)</p>
-                  </div>
-                </div>
-                <div class="row align-items-center">
-                  <div class="col-md-3">
-                    <select
-                      class="form-select form-control rounded px-2 border clickable"
-                      aria-label="Default select example"
-                    >
-                      <option selected>Pilih Tipe Driver</option>
-                      <option value="1" class="text-muted">
-                        Dengan Sopir
-                      </option>
-                      <option value="2" class="text-muted">
-                        Tanpa Sopir (Lepas Kunci)
-                      </option>
-                    </select>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="inner-addon left-addon">
-                      <input
-                        type="date"
-                        class="form-control px-2 clickable"
-                        placeholder="Pilih Tanggal"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <select class="form-control rounded px-2 border custom clickable">
-                      <option value="1" class="text-muted">
-                        08.00 WIB
-                      </option>
-                      <option value="2" class="text-muted">
-                        09.00 WIB
-                      </option>
-                      <option value="2" class="text-muted">
-                        10.00 WIB
-                      </option>
-                      <option value="2" class="text-muted">
-                        11.00 WIB
-                      </option>
-                      <option value="2" class="text-muted">
-                        12.00 WIB
-                      </option>
-                    </select>
-                    <FontAwesomeIcon
-                      icon={faClock}
-                      className="text-muted ml-2 custom-errspan"
-                    />
-                  </div>
-                  <div class="col-md-3">
-                    <div class="inner-addon right-addon">
-                      <input
-                        type="text"
-                        class="form-control px-2 clickable"
-                        placeholder="Jumlah Penumpang"
-                      />
-                      <FontAwesomeIcon
-                        icon={faUserGroup}
-                        className="text-muted custom-errspan"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="container">
             <div class="row">
               <div class="col-md-8 border">
